@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 标题 */
+header {
+    text-align: center;
+    padding: 30px 0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1.1em;
+}
+
+/* 控制面板 */
+.control-panel {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.api-key-input {
+    margin-bottom: 20px;
+}
+
+.api-key-input label {
+    display: block;
+    margin-bottom: 8px;
+    color: #aaa;
+}
+
+.api-key-input input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 1em;
+}
+
+.api-key-input input::placeholder {
+    color: #666;
+}
+
+.btn-start, .btn-restart {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-start:hover, .btn-restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-start:disabled {
+    background: #444;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 游戏状态 */
+.game-status {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.round, .phase {
+    background: rgba(255,255,255,0.1);
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 1.1em;
+}
+
+.phase.night {
+    background: rgba(75, 0, 130, 0.5);
+}
+
+.phase.day {
+    background: rgba(255, 165, 0, 0.3);
+}
+
+/* 玩家区域 */
+.players-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.player-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.player-card.dead {
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.player-card.speaking {
+    border: 2px solid #667eea;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+}
+
+.player-card.voted {
+    animation: voted 0.5s ease;
+}
+
+@keyframes voted {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.player-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    margin: 0 auto 10px;
+}
+
+.player-card.dead .player-avatar {
+    background: rgba(255,0,0,0.2);
+}
+
+.player-id {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.player-role {
+    font-size: 0.9em;
+    color: #aaa;
+    min-height: 24px;
+}
+
+.player-role.revealed {
+    color: #fff;
+}
+
+.player-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8em;
+}
+
+.vote-badge {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background: #e74c3c;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* 游戏日志 */
+.game-log {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.game-log h3 {
+    margin-bottom: 15px;
+    color: #888;
+}
+
+.log-content {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.log-item {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.log-item.death {
+    background: rgba(231, 76, 60, 0.2);
+    border-left: 3px solid #e74c3c;
+}
+
+.log-item.speech {
+    background: rgba(52, 152, 219, 0.2);
+    border-left: 3px solid #3498db;
+}
+
+.log-item.vote {
+    background: rgba(155, 89, 182, 0.2);
+    border-left: 3px solid #9b59b6;
+}
+
+.log-item.phase {
+    background: rgba(241, 196, 15, 0.2);
+    border-left: 3px solid #f1c40f;
+    font-weight: bold;
+}
+
+/* 发言展示 */
+.speech-display {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.5);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.speech-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.speaker-id {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.speaker-status {
+    background: #3498db;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.speech-content {
+    font-size: 1.2em;
+    line-height: 1.8;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.thought-content {
+    font-size: 0.95em;
+    color: #888;
+    font-style: italic;
+    padding: 10px 15px;
+    border-left: 3px solid #666;
+}
+
+.thought-content::before {
+    content: "💭 内心独白: ";
+}
+
+/* 游戏结果 */
+.game-result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.result-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.result-content h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.final-roles {
+    margin-bottom: 30px;
+}
+
+.final-role-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+
+.final-role-item.dead {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);
+}

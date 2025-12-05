@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐺 狼人杀 AI 对战</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区 -->
+        <header>
+            <h1>🐺 狼人杀 AI 对战</h1>
+            <p class="subtitle">6人局：2狼人 + 1预言家 + 1女巫 + 2村民</p>
+        </header>
+
+        <!-- 控制面板 -->
+        <div class="control-panel" id="controlPanel">
+            <div class="api-key-input">
+                <label for="apiKey">通义千问 API Key（可选）:</label>
+                <input type="password" id="apiKey" placeholder="sk-xxxx（留空使用模拟模式）">
+            </div>
+            <button class="btn-start" id="btnStart">🎮 开始游戏</button>
+        </div>
+
+        <!-- 游戏状态 -->
+        <div class="game-status" id="gameStatus">
+            <span class="round" id="roundInfo">等待开始</span>
+            <span class="phase" id="phaseInfo"></span>
+        </div>
+
+        <!-- 玩家区域 -->
+        <div class="players-area" id="playersArea">
+            <!-- 动态生成玩家卡片 -->
+        </div>
+
+        <!-- 游戏日志 -->
+        <div class="game-log">
+            <h3>📜 游戏日志</h3>
+            <div class="log-content" id="logContent">
+                <p class="log-item">等待游戏开始...</p>
+            </div>
+        </div>
+
+        <!-- 当前发言展示 -->
+        <div class="speech-display" id="speechDisplay" style="display: none;">
+            <div class="speech-header">
+                <span class="speaker-id" id="speakerId"></span>
+                <span class="speaker-status">正在发言</span>
+            </div>
+            <div class="speech-content" id="speechContent"></div>
+            <div class="thought-content" id="thoughtContent"></div>
+        </div>
+
+        <!-- 游戏结果 -->
+        <div class="game-result" id="gameResult" style="display: none;">
+            <div class="result-content">
+                <h2 id="resultTitle"></h2>
+                <div class="final-roles" id="finalRoles"></div>
+                <button class="btn-restart" id="btnRestart">🔄 再来一局</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
