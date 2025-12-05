@@ -337,8 +337,7 @@ async def websocket_endpoint(websocket: WebSocket):
             
             if data.get("action") == "start_game":
                 # 获取API Key
-                # api_key = data.get("api_key") or os.getenv("QWEN_API_KEY")
-                api_key = 'sk-2f171ed5cf8340c0a9886027eb32147a'
+                api_key = data.get("api_key") or os.getenv("QWEN_API_KEY")
                 
                 if api_key:
                     llm = QwenLLM(api_key=api_key)
